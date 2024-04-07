@@ -1,5 +1,56 @@
 # @solana/wallet-adapter-ant-design
 
+## 0.11.32
+
+### Patch Changes
+
+-   cb29215: Simplify wallet ordering to respect order provided by application
+
+## 0.11.31
+
+### Patch Changes
+
+-   Updated dependencies [bdc0eff]
+    -   @solana/wallet-adapter-react@0.15.35
+    -   @solana/wallet-adapter-base-ui@0.1.2
+
+## 0.11.30
+
+### Patch Changes
+
+-   Updated dependencies [a3d35a1]
+    -   @solana/wallet-adapter-react@0.15.34
+    -   @solana/wallet-adapter-base@0.9.23
+    -   @solana/wallet-adapter-base-ui@0.1.1
+
+## 0.11.29
+
+### Patch Changes
+
+-   7b06737: Use wallet button hooks from base-ui package
+-   ba57f75: feat: extract wallet buttons and text labels into separate components
+    Now that the wallet connection state is an enum, it makes it easier to extract the labels from the components. You can now bring your own i18n framework to bear on the `Base*` version of `WalletConnectButton`, `WalletDisconnectButton`, and `WalletMultiButton` to inject your own translated labels.
+-   Updated dependencies [7b06737]
+-   Updated dependencies [ba57f75]
+-   Updated dependencies [7c6f2e1]
+-   Updated dependencies [7b06737]
+    -   @solana/wallet-adapter-react@0.15.33
+    -   @solana/wallet-adapter-base-ui@0.1.0
+
+## 0.11.28
+
+### Patch Changes
+
+-   Updated dependencies [f62ce364]
+    -   @solana/wallet-adapter-react@0.15.32
+
+## 0.11.27
+
+### Patch Changes
+
+-   Updated dependencies [61d62efa]
+    -   @solana/wallet-adapter-react@0.15.31
+
 ## 0.11.26
 
 ### Patch Changes

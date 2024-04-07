@@ -4,6 +4,7 @@ on:
   push:
     branches: [master]
   pull_request:
+    branches: [master]
 
 jobs:
   build-and-test:
@@ -22,7 +23,7 @@ jobs:
         id: install-pnpm
         uses: pnpm/action-setup@v2
         with:
-            version: 7
+            version: 8
             run_install: false
 
       - name: Install Node.js
@@ -52,7 +53,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build packages
-        run: pnpm build:clean
+        run: pnpm run build
 
       - name: Run tests
         run: pnpm test

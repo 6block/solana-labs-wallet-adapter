@@ -1,23 +1,28 @@
 import type { WalletAdapterNetwork, WalletName } from '@solana/wallet-adapter-base';
 import {
     BaseMessageSignerWalletAdapter,
-    isIosAndRedirectable,
-    scopePollingDetectionStrategy,
     WalletConfigError,
     WalletConnectionError,
     WalletDisconnectedError,
     WalletDisconnectionError,
+    WalletError,
     WalletLoadError,
     WalletNotConnectedError,
     WalletNotReadyError,
     WalletPublicKeyError,
     WalletReadyState,
+    WalletSendTransactionError,
     WalletSignMessageError,
     WalletSignTransactionError,
+    isIosAndRedirectable,
+    isVersionedTransaction,
+    scopePollingDetectionStrategy,
+    type SendTransactionOptions,
 } from '@solana/wallet-adapter-base';
 import type { Transaction, TransactionVersion, VersionedTransaction } from '@solana/web3.js';
-import { PublicKey } from '@solana/web3.js';
+import { PublicKey, type Connection, type TransactionSignature } from '@solana/web3.js';
 import type { default as Solflare } from '@solflare-wallet/sdk';
+import { detectAndRegisterSolflareMetaMaskWallet } from './metamask/detect.js';
 
 interface SolflareWindow extends Window {
     solflare?: {
@@ -66,6 +71,7 @@ export class SolflareWalletAdapter extends BaseMessageSignerWalletAdapter {
                 }
                 return false;
             });
+            detectAndRegisterSolflareMetaMaskWallet();
         }
     }
 
@@ -173,6 +179,38 @@ export class SolflareWalletAdapter extends BaseMessageSignerWalletAdapter {
         }
 
         this.emit('disconnect');
+    }
+
+    async sendTransaction<T extends Transaction | VersionedTransaction>(
+        transaction: T,
+        connection: Connection,
+        options: SendTransactionOptions = {}
+    ): Promise<TransactionSignature> {
+        try {
+            const wallet = this._wallet;
+            if (!wallet) throw new WalletNotConnectedError();
+
+            try {
+                const { signers, ...sendOptions } = options;
+
+                if (isVersionedTransaction(transaction)) {
+                    signers?.length && transaction.sign(signers);
+                } else {
+                    transaction = (await this.prepareTransaction(transaction, connection, sendOptions)) as T;
+                    signers?.length && (transaction as Transaction).partialSign(...signers);
+                }
+
+                sendOptions.preflightCommitment = sendOptions.preflightCommitment || connection.commitment;
+
+                return await wallet.signAndSendTransaction(transaction, sendOptions);
+            } catch (error: any) {
+                if (error instanceof WalletError) throw error;
+                throw new WalletSendTransactionError(error?.message, error);
+            }
+        } catch (error: any) {
+            this.emit('error', error);
+            throw error;
+        }
     }
 
     async signTransaction<T extends Transaction | VersionedTransaction>(transaction: T): Promise<T> {

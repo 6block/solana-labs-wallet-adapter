@@ -1,5 +1,18 @@
 # @solana/wallet-adapter-phantom
 
+## 0.9.24
+
+### Patch Changes
+
+-   Updated dependencies [a3d35a1]
+    -   @solana/wallet-adapter-base@0.9.23
+
+## 0.9.23
+
+### Patch Changes
+
+-   4de663e: Phantom logo updated with rebrand (https://twitter.com/phantom/status/1674513272115175424)
+
 ## 0.9.22
 
 ### Patch Changes

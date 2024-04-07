@@ -1,5 +1,30 @@
 # @solana/wallet-adapter-solflare
 
+## 0.6.28
+
+### Patch Changes
+
+-   3d2e0cd5: Optimize Solflare MetaMask snap detection
+
+## 0.6.27
+
+### Patch Changes
+
+-   a4566f89: Add Solflare MetaMask Snap support
+
+## 0.6.26
+
+### Patch Changes
+
+-   Updated dependencies [a3d35a1]
+    -   @solana/wallet-adapter-base@0.9.23
+
+## 0.6.25
+
+### Patch Changes
+
+-   e5024dc: Support `signAndSendTransaction` method in Solflare adapter
+
 ## 0.6.24
 
 ### Patch Changes
