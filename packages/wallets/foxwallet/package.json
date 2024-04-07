@@ -1,8 +1,8 @@
 {
-    "name": "@solana/wallet-adapter-foxwallet",
-    "version": "0.1.0",
-    "author": "Solana Maintainers <maintainers@solana.foundation>",
-    "repository": "https://github.com/solana-labs/wallet-adapter",
+    "name": "@foxwallet/wallet-adapter-foxwallet",
+    "version": "0.2.0",
+    "author": "tim<tim@foxwallet.com>",
+    "repository": "https://github.com/6block/solana-labs-wallet-adapter.git",
     "license": "Apache-2.0",
     "publishConfig": {
         "access": "public"
@@ -32,13 +32,13 @@
         "package": "shx mkdir -p lib/cjs && shx echo '{ \"type\": \"commonjs\" }' > lib/cjs/package.json"
     },
     "peerDependencies": {
-        "@solana/web3.js": "^1.58.0"
+        "@solana/web3.js": "^1.77.3"
     },
     "dependencies": {
         "@solana/wallet-adapter-base": "workspace:^"
     },
     "devDependencies": {
-        "@solana/web3.js": "^1.58.0",
+        "@solana/web3.js": "^1.77.3",
         "shx": "^0.3.4"
     }
 }

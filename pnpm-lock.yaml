@@ -724,6 +724,19 @@ importers:
         specifier: ^0.3.4
         version: 0.3.4
 
+  packages/wallets/foxwallet:
+    dependencies:
+      '@solana/wallet-adapter-base':
+        specifier: workspace:^
+        version: link:../../core/base
+    devDependencies:
+      '@solana/web3.js':
+        specifier: ^1.77.3
+        version: 1.78.0
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
+
   packages/wallets/fractal:
     dependencies:
       '@fractalwagmi/solana-wallet-adapter':
@@ -1191,6 +1204,9 @@ importers:
       '@solana/wallet-adapter-coinhub':
         specifier: workspace:^
         version: link:../coinhub
+      '@foxwallet/wallet-adapter-foxwallet':
+        specifier: workspace:^
+        version: link:../foxwallet
       '@solana/wallet-adapter-fractal':
         specifier: workspace:^
         version: link:../fractal
